@@ -1,0 +1,167 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "@/styles/globals.css";
+---
+
+<Layout title="Frontend Mentor | Newsletter sign-up form with success message">
+  <main
+    class="relative bg-[#36384D] xl:flex xl:items-center xl:justify-center xl:px-[16rem] xl:pb-[13.75rem] xl:pt-[13.69rem]"
+  >
+    <section
+      class="z-0 flex flex-col bg-white xl:h-[40.0625rem] xl:w-[58rem] xl:flex-row-reverse xl:justify-between xl:rounded-[2.25rem] xl:p-6"
+    >
+      <picture>
+        <source
+          media="(min-width:768px )"
+          srcset="/public/images/illustration-sign-up-desktop.svg"
+        />
+        <img
+          src="/public/images/illustration-sign-up-mobile.svg"
+          alt=""
+          class=""
+        />
+      </picture>
+      <div class="m-6 flex flex-col gap-10 xl:ml-12 xl:mt-[6.06rem]">
+        <div class="flex flex-col gap-6">
+          <h1
+            class="text-[2.5rem] font-bold leading-10 text-[#242742] xl:text-[3.5rem] xl:leading-[3.5rem]"
+          >
+            Stay updated!
+          </h1>
+          <p
+            class="text-base font-normal leading-6 text-[#242742] xl:w-[23.5rem]"
+          >
+            Join 60,000+ product managers receiving monthly updates on:
+          </p>
+          <ul class="flex list-inside flex-col gap-[0.62rem]">
+            <li
+              class="flex items-start gap-4 text-base font-normal leading-6 text-[#242742]"
+            >
+              <img src="/public/images/icon-list.svg" alt="" />
+              Product discovery and building what matters
+            </li>
+            <li
+              class="flex items-start gap-4 text-base font-normal leading-6 text-[#242742]"
+            >
+              <img src="/public/images/icon-list.svg" alt="" />
+              Measuring to ensure updates are a success
+            </li>
+            <li
+              class="flex items-start gap-4 text-base font-normal leading-6 text-[#242742]"
+            >
+              <img src="/public/images/icon-list.svg" alt="" />
+              And much more!
+            </li>
+          </ul>
+        </div>
+        <form action="">
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-[9rem]">
+              <label
+                for="emailInput"
+                class="text-xs font-bold leading-tight text-[#242742]"
+                >Email address</label
+              >
+              <h3
+                class="hidden text-xs font-bold leading-[1.125rem] text-[#FF6155]"
+                id="erroMsg"
+              >
+                Valid email required
+              </h3>
+            </div>
+            <input
+              type="email"
+              name="email"
+              id="emailInput"
+              placeholder="email@company.com"
+              class="mb-4 h-14 w-[20.4375rem] cursor-text rounded-lg border border-solid pl-6 text-base font-normal leading-6 text-[#242742] outline-none transition-all duration-500 ease-linear hover:cursor-pointer"
+            />
+            <button
+              type="submit"
+              id="SubmitBtn"
+              class="h-14 w-[20.4375rem] rounded-lg bg-[#242742] text-base font-bold leading-6 text-white transition-all duration-500 ease-linear hover:cursor-pointer"
+            >
+              Subscribe to monthly newsletter</button
+            >
+          </div>
+        </form>
+      </div>
+    </section>
+    <section
+      class="pointer-events-none absolute left-0 top-0 z-50 flex h-full w-full flex-col gap-[16.44rem] bg-white px-6 pb-10 pt-[9.31rem] opacity-0 xl:h-[32.5rem] xl:w-[31.5rem] xl:gap-10 xl:rounded-[2.25rem] xl:p-16"
+      id="successWrap"
+    >
+      <div class="flex flex-col gap-10">
+        <div class="">
+          <img
+            src="/public/images/icon-success.svg"
+            alt="icon-success"
+            class=""
+          />
+        </div>
+        <div class="flex flex-col gap-6">
+          <h1
+            class="text-[2.5rem] font-bold leading-10 text-[#242742] xl:text-[3.5rem] xl:leading-[3.5rem]"
+          >
+            Thanks for subscribing!
+          </h1>
+          <p class="text-base font-normal leading-6 text-[#242742]">
+            A confirmation email has been sent to <span class="font-bold"
+              >ash@loremcompany.com</span
+            >. Please open it and click the button inside to confirm your
+            subscription
+          </p>
+        </div>
+      </div>
+      <div class="">
+        <button
+          type="button"
+          id="DismissBtn"
+          class="h-14 w-[20.4375rem] rounded-lg bg-[#242742] text-base font-bold leading-6 text-white"
+          >Dismiss message</button
+        >
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  @media (min-width: 768px) {
+    section {
+      box-shadow: 0px 15px 60px 0px rgba(0, 0, 0, 0.25);
+    }
+    #successWrap {
+      box-shadow: 0px 15px 60px 0px rgba(0, 0, 0, 0.25);
+    }
+  }
+  input {
+    border-color: rgba(25, 24, 43, 0.25);
+  }
+  #SubmitBtn:hover {
+    background: linear-gradient(204deg, #ff6a3a 0%, #ff527b 100%);
+    box-shadow: 0px 16px 32px 0px rgba(255, 97, 85, 0.5);
+  }
+</style>
+
+<script is:inline>
+  const emailInput = document.getElementById("emailInput");
+  const submitBtn = document.getElementById("SubmitBtn");
+  const erroMsg = document.getElementById("erroMsg");
+  const successWrap = document.getElementById("successWrap");
+  const DismissBtn = document.getElementById("DismissBtn");
+  const pattern =
+    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  submitBtn.addEventListener("click", (e) => {
+    if (emailInput.value.match(pattern)) {
+      successWrap.style.opacity = "1";
+      DismissBtn.addEventListener("click", (e) => {
+        successWrap.style.opacity = "0";
+      });
+    } else {
+      emailInput.style.borderColor = "#FF6155";
+      emailInput.style.backgroundColor = "#FF6155";
+      emailInput.style.color = "#FF6155";
+      erroMsg.classList.remove("hidden");
+    }
+  });
+</script>
